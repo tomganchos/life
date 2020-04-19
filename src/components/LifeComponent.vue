@@ -1,11 +1,14 @@
 <template>
   <div>
-<!--    <div v-for="(row, indexOuter) in massLogo" :key="indexOuter" class="row">-->
-<!--      <div v-for="(cell, indexInner) in row" :key="indexOuter + indexInner" class="cell">-->
-<!--        <div v-if="cell" class="cell-live"/>-->
-<!--        <div v-else class="cell-dead"/>-->
-<!--      </div>-->
-<!--    </div>-->
+    <div class="logo">
+      <div v-for="(row, indexOuter) in massLogo" :key="indexOuter + 'logo'" class="row">
+        <div v-for="(cell, indexInner) in row" :key="indexOuter + indexInner + 'logo'" class="cell">
+          <div v-if="cell" class="cell-live"/>
+          <div v-else class="cell-dead"/>
+        </div>
+      </div>
+    </div>
+    <br>
     <div v-for="(row, indexOuter) in mass" :key="indexOuter" class="row">
       <div v-for="(cell, indexInner) in row" :key="indexOuter + indexInner" class="cell" @click="setLife(indexOuter, indexInner)">
         <div v-if="cell" class="cell-live"/>
@@ -21,22 +24,24 @@
     data () {
       return {
         mass: [
-          [false, false, false, false, false, false, false, false, false, false],
-          [false, false, false, false, false, false, false, false, false, false],
-          [false, false, false, false, false, false, false, false, false, false],
-          [false, false, false, true, true, true, false, false, false, false],
-          [false, false, false, false, false, false, false, false, false, false],
-          [false, false, false, false, false, false, false, false, false, false],
-          [false, false, true, false, false, false, false, false, false, false],
-          [false, true, false, true, true, false, true, true, false, false],
-          [false, false, false, true, false, false, true, true, true, false],
-          [false, false, false, false, false, false, false, false, false, false]
+          [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+          [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true,  false, false, false, false, false, false, false, false, false, false, false, false],
+          [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true,  false, true,  false, false, false, false, false, false, false, false, false, false, false, false],
+          [false, false, false, false, false, false, false, false, false, false, false, false, false, true,  true,  false, false, false, false, false, false, true,  true,  false, false, false, false, false, false, false, false, false, false, false, false, true,  true,  false],
+          [false, false, false, false, false, false, false, false, false, false, false, false, true,  false, false, false, true,  false, false, false, false, true,  true,  false, false, false, false, false, false, false, false, false, false, false, false, true,  true,  false],
+          [false, true,  true,  false, false, false, false, false, false, false, false, true,  false, false, false, false, false, true,  false, false, false, true,  true,  false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+          [false, true,  true,  false, false, false, false, false, false, false, false, true,  false, false, false, true,  false, true,  true,  false, false, false, false, true,  false, true,  false, false, false, false, false, false, false, false, false, false, false, false],
+          [false, false, false, false, false, false, false, false, false, false, false, true,  false, false, false, false, false, true,  false, false, false, false, false, false, false, true,  false, false, false, false, false, false, false, false, false, false, false, false],
+          [false, false, false, false, false, false, false, false, false, false, false, false, true,  false, false, false, true,  false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+          [false, false, false, false, false, false, false, false, false, false, false, false, false, true,  true,  false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+          [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
         ],
         massLogo: [
-          [true, false, false, true, true, true, true, true, true, true],
-          [true, false, false, false, true, false, false, true, false, false],
-          [true, false, false, true, true, true, false, true, true, false],
-          [true, true, true, true, true, false, false, true, true, true]
+          [true, false, false, true, false, true, true, false, true, true],
+          [true, false, false, false, false, true, false, false, true, false],
+          [true, false, false, true, false, true, true, false, true, true],
+          [true, false, false, true, false, true, false, false, true, false],
+          [true, true, false, true, false, true, false, false, true, true]
         ],
         interval: 1
       }
@@ -89,7 +94,7 @@
             newMass.push(newRow)
           })
           this.mass = newMass
-        }, this.interval * 1000)
+        }, 100)
       },
       setLife: function (indexOuter, indexInner) {
         if (this.mass[indexOuter][indexInner]) {
@@ -103,6 +108,9 @@
 </script>
 
 <style scoped>
+  .logo {
+    display: inline-block;
+  }
   .row {
     display: flex;
   }
